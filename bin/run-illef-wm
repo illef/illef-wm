@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+while true; do
+  # log out to a file
+  illef-wm &> /tmp/illef-wm.log
+  [[ $? > 0 ]] && mv /tmp/illef-wm.log ~/prev-illef-wm.log
+  export RESTARTED=true
+done

@@ -1,0 +1,20 @@
+[package]
+name = "illef-wm"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+strip = true
+
+[[bin]]
+doc = false
+name = "illef-wm"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0.66"
+tracing = "0.1.37"
+tracing-subscriber = { version = "0.3.16", features = ["env-filter", "json"] }
+
+penrose = { git = "https://github.com/sminez/penrose.git" }
+penrose_ui = { git = "https://github.com/sminez/penrose.git" }

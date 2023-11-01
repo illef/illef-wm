@@ -1,0 +1,41 @@
+//! penrose from scratch
+use illef_wm::{bindings::raw_key_bindings, layouts::layouts, STARTUP_SCRIPT};
+use penrose::{
+    core::{bindings::parse_keybindings_with_xmodmap, Config, WindowManager},
+    extensions::hooks::{add_ewmh_hooks, manage::SetWorkspace, startup::SpawnOnStartup},
+    x::query::ClassName,
+    x11rb::RustConn,
+};
+use std::collections::HashMap;
+use tracing_subscriber::{self, prelude::*};
+
+fn main() -> anyhow::Result<()> {
+    tracing_subscriber::fmt()
+        .with_env_filter("info")
+        .finish()
+        .init();
+
+    let wm = WindowManager::new(
+        add_ewmh_hooks(config()),
+        parse_keybindings_with_xmodmap(raw_key_bindings())?,
+        HashMap::new(),
+        RustConn::new()?,
+    )?;
+
+    wm.run()?;
+
+    Ok(())
+}
+
+fn config() -> Config<RustConn> {
+    let startup_hook = SpawnOnStartup::boxed(STARTUP_SCRIPT);
+    let manage_hook = Box::new((ClassName("obs"), SetWorkspace("1")));
+
+    Config {
+        default_layouts: layouts(),
+        startup_hook: Some(startup_hook),
+        manage_hook: Some(manage_hook),
+        border_width: 0,
+        ..Config::default()
+    }
+}

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=illef-wm
+Comment=Use this session to run illef-wm as your desktop environment
+Exec=run-illef-wm
+Icon=
+Type=Application
+DesktopNames=IllefWM
