@@ -44,6 +44,7 @@ pub fn raw_key_bindings() -> HashMap<String, Box<dyn KeyEventHandler<RustConn>>>
         "M-S-e" => spawn("systemctl poweroff"),
         "M-S-r" => spawn("systemctl reboot"),
         "M-x" => spawn_with_args("fish", &["-c", "pass show bitwarden | xclip -selection clipboard && notify-send \"bitwarden password copied\""]),
+        "M-z" => spawn_with_args("fish", &["-c", "~/dotfiles/utilities/.local/bin/mfa"]),
 
         //wm
         "M-S-w" => spawn("pkill -fi illef-wm"), // logout
