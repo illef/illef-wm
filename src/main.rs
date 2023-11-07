@@ -1,6 +1,9 @@
 //! penrose from scratch
 use illef_wm::{
-    bindings::raw_key_bindings, extension::hooks::FocusTag, layouts::layouts, STARTUP_SCRIPT,
+    bindings::raw_key_bindings,
+    extension::hooks::{FocusTag, InsertPositionBelowNewer},
+    layouts::layouts,
+    STARTUP_SCRIPT,
 };
 use penrose::{
     core::{bindings::parse_keybindings_with_xmodmap, hooks::ManageHook, Config, WindowManager},
@@ -43,6 +46,7 @@ fn config() -> Config<RustConn> {
             ClassName("Gnome-screenshot"),
             FloatingCentered::new(0.5, 0.5),
         ))
+        .then(InsertPositionBelowNewer)
         .boxed();
 
     Config {

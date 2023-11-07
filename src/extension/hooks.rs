@@ -13,3 +13,13 @@ impl<X: XConn> ManageHook<X> for FocusTag {
         })
     }
 }
+
+#[derive(Debug)]
+pub struct InsertPositionBelowNewer;
+impl<X: XConn> ManageHook<X> for InsertPositionBelowNewer {
+    fn call(&mut self, _: Xid, state: &mut State<X>, x: &X) -> Result<()> {
+        x.modify_and_refresh(state, move |client_set| {
+            client_set.swap_down();
+        })
+    }
+}
