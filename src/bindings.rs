@@ -35,7 +35,7 @@ pub fn raw_key_bindings() -> HashMap<String, Box<dyn KeyEventHandler<RustConn>>>
         "M-c" => spawn("fish -c '~/dotfiles/utilities/.local/bin/copy_to_clipboard.sh'"),
         "M-d" => spawn("fish -c 'app_launcher'"),
         "M-S-x" => spawn("fish -c '~/.local/bin/lock.sh'"),
-        "M-a" => spawn("fish -c '~/dotfiles/utilities/.local/bin/open_bookmark.sh'"),
+        "M-a" => spawn("fish -c 'open_bookmark.sh'"),
         "M-w" => spawn("brave"),
         "M-g" => spawn("gnome-screenshot -i"),
         "M-m" => spawn("urxvt -e ~/dotfiles/utilities/.local/bin/open_mail.sh"),
