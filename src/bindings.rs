@@ -1,3 +1,4 @@
+use crate::extension::actions::spawn_with_args;
 use penrose::{
     builtin::{
         actions::{exit, modify_with, send_layout_message, spawn},
@@ -32,16 +33,17 @@ pub fn raw_key_bindings() -> HashMap<String, Box<dyn KeyEventHandler<RustConn>>>
 
         // Launchers
         "M-Return" => spawn("urxvt"),
-        "M-c" => spawn("fish -c '~/dotfiles/utilities/.local/bin/copy_to_clipboard.sh'"),
-        "M-d" => spawn("fish -c 'app_launcher'"),
-        "M-S-x" => spawn("fish -c '~/.local/bin/lock.sh'"),
-        "M-a" => spawn("fish -c 'open_bookmark.sh'"),
+        "M-c" => spawn_with_args("fish", &["-c", "~/dotfiles/utilities/.local/bin/copy_to_clipboard.sh"]),
+        "M-d" => spawn_with_args("fish", &["-c","app_launcher"]),
+        "M-S-x" => spawn_with_args("fish", &["-c", "~/.local/bin/lock.sh"]),
+        "M-a" => spawn_with_args("fish", &["-c", "open_bookmark.sh"]),
         "M-w" => spawn("brave"),
         "M-g" => spawn("gnome-screenshot -i"),
-        "M-m" => spawn("urxvt -e ~/dotfiles/utilities/.local/bin/open_mail.sh"),
-        "M-S-m" => spawn("fish -c 'monitor_check.sh'"),
+        "M-m" => spawn_with_args("urxvt", &["-e", "~/dotfiles/utilities/.local/bin/open_mail.sh"]),
+        "M-S-m" => spawn_with_args("fish", &["-c", "monitor_check.sh"]),
         "M-S-e" => spawn("systemctl poweroff"),
         "M-S-r" => spawn("systemctl reboot"),
+        "M-x" => spawn_with_args("fish", &["-c", "pass show bitwarden | xclip -selection clipboard && notify-send \"bitwarden password copied\""]),
 
         //wm
         "M-S-w" => spawn("pkill -fi illef-wm"), // logout
