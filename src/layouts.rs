@@ -11,7 +11,7 @@ use penrose::{
 pub fn layouts() -> LayoutStack {
     let max_main = 1;
     let ratio = 0.6;
-    let ratio_step = 0.1;
+    let ratio_step = 0.05;
 
     stack!(
         MainAndStack::side(max_main, ratio, ratio_step),
