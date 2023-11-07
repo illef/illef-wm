@@ -1,7 +1,9 @@
 //! penrose from scratch
-use illef_wm::{bindings::raw_key_bindings, layouts::layouts, STARTUP_SCRIPT};
+use illef_wm::{
+    bindings::raw_key_bindings, extension::hooks::FocusTag, layouts::layouts, STARTUP_SCRIPT,
+};
 use penrose::{
-    core::{bindings::parse_keybindings_with_xmodmap, Config, WindowManager},
+    core::{bindings::parse_keybindings_with_xmodmap, hooks::ManageHook, Config, WindowManager},
     extensions::hooks::{add_ewmh_hooks, manage::SetWorkspace, startup::SpawnOnStartup},
     x::query::ClassName,
     x11rb::RustConn,
@@ -29,7 +31,11 @@ fn main() -> anyhow::Result<()> {
 
 fn config() -> Config<RustConn> {
     let startup_hook = SpawnOnStartup::boxed(STARTUP_SCRIPT);
-    let manage_hook = Box::new((ClassName("obs"), SetWorkspace("1")));
+    let manage_hook = (ClassName("Slack"), SetWorkspace("1"))
+        .then((ClassName("Slack"), FocusTag("1")))
+        .then((ClassName("Youtube"), SetWorkspace("4")))
+        .then((ClassName("Youtube"), FocusTag("4")))
+        .boxed();
 
     Config {
         default_layouts: layouts(),
