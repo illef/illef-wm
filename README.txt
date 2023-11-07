@@ -1,6 +1,6 @@
 WindowManager exclusively for me, thanks https://github.com/sminez/penrose
 
-- [ ] Add ManageHook for gnome-screenshot (doFloat)
+- [x] Add ManageHook for gnome-screenshot (doFloat)
 - [x] Add ManageHook for Slack,YouTube 
 - [ ] Add ResizableMainAndStack layout [1]
 

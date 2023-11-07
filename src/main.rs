@@ -4,7 +4,11 @@ use illef_wm::{
 };
 use penrose::{
     core::{bindings::parse_keybindings_with_xmodmap, hooks::ManageHook, Config, WindowManager},
-    extensions::hooks::{add_ewmh_hooks, manage::SetWorkspace, startup::SpawnOnStartup},
+    extensions::hooks::{
+        add_ewmh_hooks,
+        manage::{FloatingCentered, SetWorkspace},
+        startup::SpawnOnStartup,
+    },
     x::query::ClassName,
     x11rb::RustConn,
 };
@@ -35,6 +39,10 @@ fn config() -> Config<RustConn> {
         .then((ClassName("Slack"), FocusTag("1")))
         .then((ClassName("Youtube"), SetWorkspace("4")))
         .then((ClassName("Youtube"), FocusTag("4")))
+        .then((
+            ClassName("Gnome-screenshot"),
+            FloatingCentered::new(0.5, 0.5),
+        ))
         .boxed();
 
     Config {
