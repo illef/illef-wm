@@ -49,10 +49,6 @@ install-debug: install-illef-wm-debug install-helpers
 uninstall:
 	@echo ":: Removing binaries..."
 	@ls bin | xargs -I {} rm -f /usr/local/bin/{}
-	@rm -f /usr/local/bin/penrose-from-scratch
+	@rm -f /usr/local/bin/illef-wm
 	@echo ":: Done"
 
-.PHONY: update-penrose
-update-penrose:
-	@echo "Updating to latest version of penrose from GitHub..."
-	cargo update -p penrose
