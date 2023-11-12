@@ -2,19 +2,20 @@
 use penrose::{
     builtin::layout::{
         transformers::{Gaps, ReserveTop},
-        MainAndStack, Monocle,
+        Monocle,
     },
     core::layout::LayoutStack,
     stack,
 };
 
+use crate::extension::layout::ResizableTall;
+
 pub fn layouts() -> LayoutStack {
-    let max_main = 1;
     let ratio = 0.6;
     let ratio_step = 0.05;
 
     stack!(
-        MainAndStack::side(max_main, ratio, ratio_step),
+        ResizableTall::new(ratio, ratio_step).boxed(),
         Monocle::boxed()
     )
     .map(|layout| ReserveTop::wrap(Gaps::wrap(layout, 0, 0), 35))

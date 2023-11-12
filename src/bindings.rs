@@ -1,4 +1,7 @@
-use crate::extension::actions::spawn_with_args;
+use crate::extension::{
+    actions::spawn_with_args,
+    layout::{FocusExpand, FocusShrink},
+};
 use penrose::{
     builtin::{
         actions::{exit, modify_with, send_layout_message, spawn},
@@ -24,8 +27,8 @@ pub fn raw_key_bindings() -> HashMap<String, Box<dyn KeyEventHandler<RustConn>>>
         // Layout control
         "M-space" => modify_with(|cs| cs.next_layout()),
         // TODO: layout default
-        // TODO: MirrorShrink
-        // TODO: MirrorExpand
+        "M-S-j" => send_layout_message(|| FocusShrink),
+        "M-S-k" => send_layout_message(|| FocusExpand),
         "M-comma" => send_layout_message(|| IncMain(1)),
         "M-period" => send_layout_message(|| IncMain(-1)),
         "M-l" => send_layout_message(|| ExpandMain),
