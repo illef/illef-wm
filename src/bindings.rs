@@ -55,7 +55,7 @@ pub fn raw_key_bindings() -> HashMap<String, Box<dyn KeyEventHandler<RustConn>>>
     };
 
     // Per-workspace focusing and client throwing
-    for tag in &["1", "2", "3", "4", "5", "6"] {
+    for tag in &["1", "2", "3", "4", "5", "6", "7", "8", "9"] {
         raw_bindings.extend([
             (
                 format!("M-{tag}"),
