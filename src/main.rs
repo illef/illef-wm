@@ -42,6 +42,8 @@ fn config() -> Config<RustConn> {
         .then((ClassName("Slack"), FocusTag("1")))
         .then((ClassName("Youtube"), SetWorkspace("4")))
         .then((ClassName("Youtube"), FocusTag("4")))
+        .then((ClassName("Sabaki"), SetWorkspace("6")))
+        .then((ClassName("Sabaki"), FocusTag("6")))
         .then((
             ClassName("Gnome-screenshot"),
             FloatingCentered::new(0.5, 0.5),
