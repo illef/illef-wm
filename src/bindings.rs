@@ -42,7 +42,7 @@ pub fn raw_key_bindings() -> HashMap<String, Box<dyn KeyEventHandler<RustConn>>>
         "M-a" => spawn_with_args("fish", &["-c", "open_bookmark.sh"]),
         "M-w" => spawn("brave"),
         "M-g" => spawn("gnome-screenshot -i"),
-        "M-m" => spawn_with_args("urxvt", &["-e", "~/dotfiles/utilities/.local/bin/open_mail.sh"]),
+        "M-m" => spawn_with_args("urxvt", &["-e", "/home/illef/dotfiles/utilities/.local/bin/open_mail.sh"]),
         "M-S-m" => spawn_with_args("fish", &["-c", "monitor_check.sh"]),
         "M-S-e" => spawn("systemctl poweroff"),
         "M-S-r" => spawn("systemctl reboot"),
